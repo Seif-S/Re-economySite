@@ -6,89 +6,94 @@
   <title>Document</title>
 
   <link rel="stylesheet" href="../static/style.css">
-</head>
-<img src="../static/reconomy-logo.png" alt="" width="500">
 
-
-<h2>Check In and Out</h2>
-<body>
-</style>
 </head>
 <body>
     <div class="container">
-        <div class="placeholder" id="placeholder"
-            <form action="/" method="POST">
-                <select id="nameList" name="option">
-                    <option value="" disabled selected>Select a name</option>
-                    <option value="John Doe">John Doe</option>
-                    <option value="Jane Smith">Jane Smith</option>
-                    <option value="Alice Johnson">Alice Johnson</option>
-                    <option value="Bob Brown">Bob Brown</option>
-                </select>
-                <button id="checkButton" onclick="toggleCheckInOut()">Check In/out</button>
-                <div id="status" style="margin-top: 20px;"></div>
-            </form>
+      <div class="form-container">
+        <img src="../static/reconomy-logo.png" alt="" width="500" class="logo" >
+        <br>
+        <h2>Check In and Out</h2>
+        <div class="placeholder" id="placeholder">
+          <form action="/" method="POST" onsubmit="return false;">
+            <select id="nameList" name="option" onchange="updateButtonText()">
+              <option value="" disabled selected>Select a name</option>
+              <option value="John Doe">John Doe</option>
+              <option value="Jane Smith">Jane Smith</option>
+              <option value="Alice Johnson">Alice Johnson</option>
+              <option value="Bob Brown">Bob Brown</option>
+            </select>
+            <button id="checkButton" class="check-in" onclick="toggleCheckInOut()">Check In</button>
+            <div id="status"></div>
+          </form>
         </div>
+      </div>
+      <div class="checked-in-list">
+        <h2>Checked In Today</h2>
+        <ul id="checkInList"></ul>
+      </div>
     </div>
-
+  
     <script>
-
-        let checkedInNames = new Set();
-        let currentCheckedInName = null;
-
-        function toggleCheckInOut() {
-            const nameList = document.getElementById('nameList');
-            const selectedName = nameList.options[nameList.selectedIndex].text;
-            const checkButton = document.getElementById('checkButton');
-            const status = document.getElementById('status');
-            const currentTime = new Date();
-
-            if (selectedName !== "Select a name") {
-                if (checkedInNames.has(selectedName)) {
-                    // Check out
-                    status.textContent = `${selectedName} checked out at ${currentTime.toLocaleTimeString()}`;
-                    checkButton.textContent = "Check In";
-                    checkedInNames.delete(selectedName);
-                    if (currentCheckedInName === selectedName) {
-                        currentCheckedInName = null;
-                    }
-                } else {
-                    // Check in
-                    status.textContent = `${selectedName} checked in at ${currentTime.toLocaleTimeString()}`;
-                    checkButton.textContent = "Check Out";
-                    checkedInNames.add(selectedName);
-                    currentCheckedInName = selectedName;
-                }
-                updateCheckInList();
-
-            } else {
-                alert('Please select a name');
+      let checkedInNames = new Set();
+      let currentCheckedInName = null;
+  
+      function toggleCheckInOut() {
+        const nameList = document.getElementById('nameList');
+        const selectedName = nameList.options[nameList.selectedIndex].text;
+        const checkButton = document.getElementById('checkButton');
+        const status = document.getElementById('status');
+        const currentTime = new Date();
+  
+        if (selectedName !== "Select a name") {
+          if (checkedInNames.has(selectedName)) {
+            // Check out
+            status.textContent = `${selectedName} checked out at ${currentTime.toLocaleTimeString()}`;
+            checkButton.textContent = "Check In";
+            checkButton.className = "check-in";
+            checkedInNames.delete(selectedName);
+            if (currentCheckedInName === selectedName) {
+              currentCheckedInName = null;
             }
+          } else {
+            // Check in
+            status.textContent = `${selectedName} checked in at ${currentTime.toLocaleTimeString()}`;
+            checkButton.textContent = "Check Out";
+            checkButton.className = "check-out";
+            checkedInNames.add(selectedName);
+            currentCheckedInName = selectedName;
+          }
+          updateCheckInList();
+        } else {
+          alert('Please select a name');
         }
-
-        function updateButtonText() {
-            const nameList = document.getElementById('nameList');
-            const selectedName = nameList.options[nameList.selectedIndex].text;
-            const checkButton = document.getElementById('checkButton');
-
-            if (selectedName !== "Select a name") {
-                if (checkedInNames.has(selectedName)) {
-                    checkButton.textContent = "Check Out";
-                } else {
-                    checkButton.textContent = "Check In";
-                }
-            }
+      }
+  
+      function updateButtonText() {
+        const nameList = document.getElementById('nameList');
+        const selectedName = nameList.options[nameList.selectedIndex].text;
+        const checkButton = document.getElementById('checkButton');
+  
+        if (selectedName !== "Select a name") {
+          if (checkedInNames.has(selectedName)) {
+            checkButton.textContent = "Check Out";
+            checkButton.className = "check-out";
+          } else {
+            checkButton.textContent = "Check In";
+            checkButton.className = "check-in";
+          }
         }
-
-        function updateCheckInList() {
-            const checkInList = document.getElementById('checkInList');
-            checkInList.innerHTML = '';
-            checkedInNames.forEach(name => {
-                const listItem = document.createElement('li');
-                listItem.textContent = name;
-                checkInList.appendChild(listItem);
-            });
-        }
+      }
+  
+      function updateCheckInList() {
+        const checkInList = document.getElementById('checkInList');
+        checkInList.innerHTML = '';
+        checkedInNames.forEach(name => {
+          const listItem = document.createElement('li');
+          listItem.textContent = name;
+          checkInList.appendChild(listItem);
+        });
+      }
     </script>
-</body>
+  </body>
 </html>

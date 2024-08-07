@@ -1,14 +1,22 @@
+.logo {
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    
+}
 .container {
     display: flex;
-    flex-direction: column;
+    border: solid black;
     align-items: center;
     justify-content: center;
     height: 100vh;
+
+    
 }
 .placeholder {
     width: 300px;
     height: 300px;
-    border: 2px dashed #ccc;
+    border: solid black;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,13 +26,37 @@
     box-sizing: border-box;
 }
 button {
-    padding: 10px 20px;
+    padding: 10px;
     font-size: 16px;
-    margin: 5px;
+    margin: 20px;
+    width: 85%;
+   
 }
 select {
     padding: 10px;
     font-size: 16px;
     margin-bottom: 20px;
     width: 100%;
+    ;
 }
+
+.check-in {
+    background-color: rgb(10, 132, 8);
+    color: white;
+    
+  }
+  .check-out {
+    background-color: rgb(233, 32, 10);
+    color: white;
+  }
+
+ 
+  .checked-in-list {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: solid black;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 250px;
+  }
