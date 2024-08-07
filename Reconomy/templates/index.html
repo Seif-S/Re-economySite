@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="main.js"></script>
+
+  <link rel="stylesheet" href="../static/style.css">
 </head>
-<img src="reconomy-logo.png" alt="" width="500">
+<img src="../static/reconomy-logo.png" alt="" width="500">
+
 
 <h2>Check In and Out</h2>
 <body>
@@ -15,24 +16,23 @@
 </head>
 <body>
     <div class="container">
-        <div class="placeholder" id="placeholder">
-            <select id="nameList" onchange="updateButtonText()">
-                <option value="" disabled selected>Select a name</option>
-                <option value="John Doe">John Doe</option>
-                <option value="Jane Smith">Jane Smith</option>
-                <option value="Alice Johnson">Alice Johnson</option>
-                <option value="Bob Brown">Bob Brown</option>
-            </select>
-            <button id="checkButton" onclick="toggleCheckInOut()">Check In</button>
-            <div id="status" style="margin-top: 20px;"></div>
-        </div>
-        <div class="list-container">
-            <h2>Checked In Today</h2>
-            <ul id="checkInList"></ul>
+        <div class="placeholder" id="placeholder"
+            <form action="/" method="POST">
+                <select id="nameList" name="option">
+                    <option value="" disabled selected>Select a name</option>
+                    <option value="John Doe">John Doe</option>
+                    <option value="Jane Smith">Jane Smith</option>
+                    <option value="Alice Johnson">Alice Johnson</option>
+                    <option value="Bob Brown">Bob Brown</option>
+                </select>
+                <button id="checkButton" onclick="toggleCheckInOut()">Check In/out</button>
+                <div id="status" style="margin-top: 20px;"></div>
+            </form>
         </div>
     </div>
 
     <script>
+
         let checkedInNames = new Set();
         let currentCheckedInName = null;
 
@@ -60,6 +60,7 @@
                     currentCheckedInName = selectedName;
                 }
                 updateCheckInList();
+
             } else {
                 alert('Please select a name');
             }
