@@ -6,6 +6,8 @@ const selectedName = nameList.options[nameList.selectedIndex].text;
 const checkButton = document.getElementById('checkButton');
 const status = document.getElementById('status');
 const currentTime = new Date();
+const message = messageBox.value.trim();
+
 
 if (selectedName !== "Select a name") {
     if (checkedInNames.has(selectedName)) {
@@ -64,7 +66,8 @@ $(document).ready(function(){
         contentType:'application/json',
         data:{
         todo:$('#nameList :selected').text(),
-        button_status:$('button').attr('class')
+        button_status:$('button').attr('class'),
+        messagecontent:$('textarea').val()
         },
         success:function(response){
             console.log('Data saved')
