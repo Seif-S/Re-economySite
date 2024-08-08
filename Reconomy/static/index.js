@@ -63,7 +63,8 @@ $(document).ready(function(){
         type:'get',
         contentType:'application/json',
         data:{
-        todo:$('#nameList :selected').text()
+        todo:$('#nameList :selected').text(),
+        button_status:$('button').attr('class')
         },
         success:function(response){
             console.log('Data saved')
