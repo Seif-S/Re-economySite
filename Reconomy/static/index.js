@@ -73,12 +73,12 @@ $(document).ready(function(){
     })
 })
 
-    function updateDateTime() {
-      const dateTimeElement = document.getElementById('dateTime');
-      const now = new Date();
-      const dateString = now.toLocaleDateString();
-      const timeString = now.toLocaleTimeString();
-      dateTimeElement.textContent = `Dutum: ${dateString} Kl: ${timeString}`;
-    }
+function updateDateTime() {
+  const dateTimeElement = document.getElementById('dateTime');
+  const now = new Date();
+  const dateString = now.toLocaleDateString();
+  const timeString = now.toLocaleTimeString();
+  dateTimeElement.textContent = `Date: ${dateString} Time: ${timeString}`;
+}
 
-    setInterval(updateDateTime, 1000);
+setInterval(updateDateTime, 1000);
