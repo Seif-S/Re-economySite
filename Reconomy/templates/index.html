@@ -4,9 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-
   <link rel="stylesheet" href="../static/style.css">
-
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -16,9 +15,8 @@
         <br>
         <h2>Check In and Out</h2>
         <div class="placeholder" id="placeholder">
-          <form action="/" method="POST" onsubmit="return false;">
             <select id="nameList" name="option" onchange="updateButtonText()">
-              <option value="" disabled selected>Select a name</option>
+              <option value='' disabled selected>Select a name</option>
               <option value="John Doe">John Doe</option>
               <option value="Jane Smith">Jane Smith</option>
               <option value="Alice Johnson">Alice Johnson</option>
@@ -26,8 +24,6 @@
             </select>
             <button id="checkButton" class="check-in" onclick="toggleCheckInOut()">Check In</button>
             <div id="status"></div>
-          </form>
-
         </div>
       </div>
       <div class="checked-in-list">
@@ -96,6 +92,21 @@
           checkInList.appendChild(listItem);
         });
       }
+      $(document).ready(function(){
+        $('#checkButton').click(function(){
+          $.ajax({
+          url:'',
+          type:'get',
+          contentType:'application/json',
+          data:{
+            todo:$('#nameList :selected').val()
+          },
+          success:function(response){
+            console.log('Data saved')
+            }
+          })
+        })
+      })
     </script>
   </body>
 </html>
