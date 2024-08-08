@@ -14,22 +14,60 @@
     
 }
 .placeholder {
-    width: 300px;
-    height: 300px;
-    border: solid black;
+    background-color: #f8f9fa; 
+    padding: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    width: 350px; 
+    margin: 20px auto; 
+    height: 350px;
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-    padding: 20px;
     box-sizing: border-box;
 }
+
+
+/* Styling för knappen */
+
+
+#checkButton.check-out {
+    background-color: #dc3545; /* Röd bakgrund för utcheckning */
+}
+
+#checkButton:hover {
+    background-color: #218838; /* Mörkare grön vid hover */
+}
+
+#checkButton.check-out:hover {
+    background-color: #c82333;
+}
+textarea#messageBox {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    resize: vertical; 
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); 
+    font-family: Arial, sans-serif;
+}
+
+textarea#messageBox:focus {
+    border-color: #007BFF; 
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+    outline: none; 
+}
+
 button {
     padding: 10px;
     font-size: 16px;
     margin: 20px;
     width: 85%;
+    border-radius: 10px;
    
 }
 select {
@@ -55,8 +93,13 @@ select {
     position: absolute;
     top: 20px;
     right: 20px;
-    border: solid black;
+    background-color: #f8f9fa;
     padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     box-sizing: border-box;
     width: 250px;
+     
+  }
+  #checkInList li{
+    list-style-type: none;
   }
