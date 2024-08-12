@@ -25,29 +25,31 @@ def index():
 
 def xlsxCheckout(user, time, comments):
     date = str(datetime.date.today())
-    if os.path.isfile('Checkout'+ date +'.xlsx'):
-        Ws.append([user, time, comments])
-        Wb.save('Checkout'+ date +'.xlsx')
+    fileName = 'timeReport'+ date +'.xlsx'
+    if os.path.isfile(fileName):
+        Ws.append([user, None,time, comments])
+        Wb.save(fileName)
     else:
         Wb = Workbook()
         Ws = Wb.active
         Ws.title = 'Data'
-        Ws.append(['Name','Time checked out', 'Comment'])
-        Ws.append([user, time, comments])
-        Wb.save('Checkout'+ date +'.xlsx')
+        Ws.append(['Name','Time checked in', 'Time checked out', 'Comment'])
+        Ws.append([user, None, time, comments])
+        Wb.save(fileName)
 
 def xlsxCheckin(user, time, comments):
     date = str(datetime.date.today())
-    if os.path.isfile('Checkin'+ date +'.xlsx'):
-        Ws.append([user, time, comments])
-        Wb.save('Checkout'+ date +'.xlsx')
+    fileName = 'timeReport'+ date +'.xlsx'
+    if os.path.isfile(fileName):
+        Ws.append([user, time, None, comments])
+        Wb.save(fileName)
     else:
         Wb = Workbook()
         Ws = Wb.active
         Ws.title = 'Data'
-        Ws.append(['Name','Time checked in', 'Comment'])
-        Ws.append([])
-        Wb.save('Checkin'+ date +'.xlsx')
+        Ws.append(['Name','Time checked in', 'Time checked out', 'Comment'])
+        Ws.append([user, time, None, comments])
+        Wb.save(fileName)
 
 if __name__ == '__main__':
     app.run(debug=True)
