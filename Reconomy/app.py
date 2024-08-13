@@ -13,9 +13,9 @@ def index():
         textArea = request.args.get('messagecontent')
         currentTime = datetime.datetime.today()
         if username and username.strip():
-                if buttonStatus == 'check-out':
+                if buttonStatus == 'check-in':
                     xlsxCheckout(username, currentTime, textArea)
-                elif buttonStatus == 'check-in':
+                elif buttonStatus == 'check-out':
                     xlsxCheckin(username, currentTime, textArea)
                 else:
                     print('Error')
@@ -27,22 +27,20 @@ def xlsxCheckout(user, time, comments):
     date = str(datetime.date.today())
     fileName = 'timeReport'+ date +'.xlsx'
     if os.path.isfile(fileName):
-        Wb = load_workbook(fileName)
-        Ws = Wb.active
-        index = xlsxSearch(user)
-        if index != False:
-            index = 'C' + str(index)
-            Ws[index].value = time
-        else:
-            Ws.append([user, time, None, comments])
+        try:
+            Wb = load_workbook(fileName)
+            Ws = Wb.active
+            index = xlsxSearch(user)
+            if index != False:
+                index = 'C' + str(index)
+                Ws[index].value = time
+            else:
+                Ws.append([user, time, None, comments])
             Wb.save(fileName)
+        except Exception as Error:
+            print(Error)
     else:
-        Wb = Workbook()
-        Ws = Wb.active
-        Ws.title = 'Data'
-        Ws.append(['Name','Time checked in', 'Time checked out', 'Comment'])
-        Ws.append([user, None, time, comments])
-        Wb.save(fileName)
+        print('Incorrect action')
 
 def xlsxCheckin(user, time, comments):
     date = str(datetime.date.today())
@@ -50,13 +48,8 @@ def xlsxCheckin(user, time, comments):
     if os.path.isfile(fileName):
         Wb = load_workbook(fileName)
         Ws = Wb.active
-        index = xlsxSearch(user)
-        if index != False:
-            index = 'B' + str(index)
-            Ws[index].value = time
-        else:
-            Ws.append([user, time, None, comments])
-            Wb.save(fileName)
+        Ws.append([user, time, None, comments])
+        Wb.save(fileName)
     else:
         Wb = Workbook()
         Ws = Wb.active
@@ -75,8 +68,7 @@ def xlsxSearch(user):
             for rows in Ws.iter_rows(min_row=1, max_col=1):
                 cellValue = rows[0].value
                 if cellValue == user:
-                    cellIndex = rows[0].row
-                    return cellIndex
+                    return rows[0].row
                 else:
                     continue
             return False
