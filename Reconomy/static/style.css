@@ -1,3 +1,38 @@
+.week-comment-box {
+    position: absolute;
+    top: 230px;
+    left: 200px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    height: 310px;
+
+    
+    
+
+  }
+
+h2 {
+    position: absolute;
+    top:-10px
+}  
+#adminComment {
+    width: 100%;
+    height: 230px;
+
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+
+
+
 .logo {
     position: absolute;
     top: 8px;
@@ -6,6 +41,7 @@
     padding-right: 25px;
     padding-left: 20px;
     
+
 }
 .container {
     display: flex;
@@ -13,6 +49,10 @@
     justify-content: center;
     height: 100vh;
 
+
+
+
+    
     
 }
 .placeholder {
@@ -100,6 +140,7 @@ select {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     box-sizing: border-box;
     width: 250px;
+    min-height: 80px;
      
   }
   #checkInList li{
@@ -121,3 +162,5 @@ footer {
     font-size: 24px;
     font-weight: bold;
 }
+
+
