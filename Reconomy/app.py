@@ -5,6 +5,7 @@ import datetime
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
+NameList = ['Steve', 'Dave', 'Kevin', 'Mad Max','Test']
 @app.route('/')
 def index():
     try:
@@ -23,8 +24,7 @@ def index():
                     print('Error')
     except Exception as error:
         return repr(error)
-    return render_template('index.html')
-
+    return render_template('index.html', user = NameList)
 # edit xlsx-file and checks out a user
 def xlsxCheckout(user, time, comments):
     date = str(datetime.date.today())
