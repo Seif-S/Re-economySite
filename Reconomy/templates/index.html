@@ -9,11 +9,25 @@
   <script src="../static/index.js"></script>
 </head>
 <body>
+
+ 
+
+  <div class="container">
+    
+    <!-- Veckokommentar box -->
+    <div class="week-comment-box">
+      <h2 id="weekNumber"></h2>  <!-- Veckonumret kommer att visas här -->
+      <h4>Viktig information</h4>
+      
+    </div>
+
+ 
+
   <div class="container">
     <div class="form-container">
       <img src="../static/reconomy-logo.png" alt="" width="500" class="logo" >
       <br>
-      <h2>Check In and Out</h2>
+      <h3>Check In and Out</h3>
       <div class="placeholder" id="placeholder">
           <select id="nameList" name="option" onchange="updateButtonText()">
             <option value='' disabled selected>Select a name</option>
@@ -29,9 +43,15 @@
     </div>
     <div class="checked-in-list">
       <h2>Checked In Today</h2>
+      <br>
       <ul id="checkInList"></ul>
     </div>
   </div>
+
+
+
+
+  
   <footer>
     <div id="dateTime" class="large-text"></div>
   </footer>
