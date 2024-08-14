@@ -76,6 +76,26 @@ $(document).ready(function(){
     })
 })
 
+
+
+function getWeekNumber(date) {
+    var firstDayOfYear = new Date(date.getFullYear(), 0, 1);
+    var pastDaysOfYear = (date - firstDayOfYear) / 86400000;
+    return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const weekNumberElement = document.getElementById('weekNumber');
+    const currentDate = new Date();
+    const weekNumber = getWeekNumber(currentDate);
+    weekNumberElement.textContent = `Week ${weekNumber}`;
+  });
+
+
+
+
+  
+
 function updateDateTime() {
   const dateTimeElement = document.getElementById('dateTime');
   const now = new Date();
@@ -83,5 +103,7 @@ function updateDateTime() {
   const timeString = now.toLocaleTimeString();
   dateTimeElement.textContent = `Date: ${dateString} Time: ${timeString}`;
 }
+
+
 
 setInterval(updateDateTime, 1000);
