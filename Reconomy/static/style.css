@@ -1,7 +1,7 @@
 .week-comment-box {
     position: absolute;
-    top: 230px;
-    left: 200px;
+    top: 270px;
+    left: 150px;
     background-color: #f8f9fa;
     padding: 20px;
     border-radius: 10px;
@@ -20,7 +20,7 @@ h2 {
 }  
 #adminComment {
     width: 100%;
-    height: 230px;
+    height: 300px;
 
     font-size: 14px;
     border: 1px solid #cccccc;
