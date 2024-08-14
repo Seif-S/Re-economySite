@@ -31,10 +31,9 @@
       <div class="placeholder" id="placeholder">
           <select id="nameList" name="option" onchange="updateButtonText()">
             <option value='' disabled selected>Select a name</option>
-            <option value="John Doe">John Doe</option>
-            <option value="Jane Smith">Jane Smith</option>
-            <option value="Alice Johnson">Alice Johnson</option>
-            <option value="Bob Brown">Bob Brown</option>
+            {% for i in user %}
+            <option value={{i}}>{{i}}</option>
+            {%endfor%}
           </select>
           <textarea id="messageBox" placeholder="Enter a message"></textarea>
           <button id="checkButton" class="check-in" onclick="toggleCheckInOut()">Check In</button>
