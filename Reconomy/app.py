@@ -1,11 +1,15 @@
 from flask import Flask, render_template, request
+from waitress import serve
 from openpyxl import Workbook, load_workbook, cell
 import os.path
 import datetime
 
-app = Flask(__name__, template_folder='templates', static_folder='static')
+wsgiapp = Flask(__name__, template_folder='templates', static_folder='static')
 
-@app.route('/')
+with open('Reconomy\\Names.txt', 'r', encoding='utf-8') as file:
+    NameList = file.read().split('\n')
+
+@wsgiapp.route('/')
 def index():
     try:
         username = request.args.get('todo')
@@ -23,8 +27,7 @@ def index():
                     print('Error')
     except Exception as error:
         return repr(error)
-    return render_template('index.html')
-
+    return render_template('index.html', user = NameList)
 # edit xlsx-file and checks out a user
 def xlsxCheckout(user, time, comments):
     date = str(datetime.date.today())
@@ -80,7 +83,7 @@ def xlsxSearch(user):
     else:
         print('File do not exist')
         return False
-
 # used to run in debug mode
 if __name__ == '__main__':
-    app.run(debug=True)
+    serve(wsgiapp, host='127.0.0.1', port=8080, url_scheme='https')
+    # app.run(debug=True)
