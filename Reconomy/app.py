@@ -1,12 +1,13 @@
 from flask import Flask, render_template, request
+from waitress import serve
 from openpyxl import Workbook, load_workbook, cell
 import os.path
 import datetime
 
-app = Flask(__name__, template_folder='templates', static_folder='static')
+wsgiApp = Flask(__name__, template_folder='templates', static_folder='static')
 
 NameList = ['Steve', 'Dave', 'Kevin', 'Mad Max','Test']
-@app.route('/')
+@wsgiApp.route('/')
 def index():
     try:
         username = request.args.get('todo')
@@ -80,7 +81,13 @@ def xlsxSearch(user):
     else:
         print('File do not exist')
         return False
+    
+@wsgiApp.route('/ADMIN')
+def Admin():
+    pass
+    # return render_template()
 
 # used to run in debug mode
 if __name__ == '__main__':
-    app.run(debug=True)
+    serve(wsgiApp, host='127.0.0.1', port=80, url_scheme='https')
+    # app.run(debug=True) -- test build
