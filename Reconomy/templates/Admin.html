@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Sida - Deltagare</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+     /* admin.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.admin-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.user-list-section {
+  flex: 2;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.user-list-section table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-list-section th, .user-list-section td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.user-list-section th {
+  background-color: #f2f2f2;
+}
+
+.add-user-section {
+  flex: 1;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.add-user-section form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-user-section label {
+  margin: 10px 0 5px;
+}
+
+.add-user-section input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 5% auto;
+  padding: 20px;
+  border-radius: 5px;
+  width: 40%;
+}
+
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+}
+
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+  </style>
+</head>
+
+<body>
+
+  <div class="admin-header">
+    
+    <a href="index.html" class="btn">Gå till första sidan</a>
+  </div>
+
+  <div class="admin-container">
+    
+    <!-- Deltagarlista -->
+    <div class="user-list-section">
+      <h2>PARTCIPANT'S LIST</h2>
+      <table id="userTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Namn</th>
+            <th>Åtgärder</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Deltagare kommer att läggas till här dynamiskt -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- add partcipant -->
+    <div class="add-user-section">
+      <h2>Lägg till ny deltagare</h2>
+      <form id="addUserForm">
+        <label for="addUserName">Namn:</label>
+        <input type="text" id="addUserName" required>
+        <button type="submit" class="btn">Lägg till deltagare</button>
+      </form>
+    </div>
+
+    <!-- edit partcipant(modal) -->
+    <div id="editUserModal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Redigera deltagare</h2>
+        <form id="editUserForm">
+          <input type="hidden" id="editUserId">
+          <label for="editUserName">Namn:</label>
+          <input type="text" id="editUserName" required>
+          <button type="submit" class="btn">Spara ändringar</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="../static/admin.js"></script>
+</body>
+</html>
