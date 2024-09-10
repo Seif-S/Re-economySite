@@ -25,8 +25,10 @@
       <div class="placeholder" id="placeholder">
           <select id="nameList" name="option" onchange="updateButtonText()">
             <option value='' disabled selected>Select a name</option>
-            {% for i in user %}
+            {% for index in user %}
+              {% for i in index%}
             <option value={{i}}>{{i}}</option>
+              {% endfor %}
             {%endfor%}
           </select>
           <textarea id="messageBox" placeholder="Enter a message"></textarea>

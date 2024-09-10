@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from flask_mysqldb import MySQL
 from waitress import serve
 from openpyxl import Workbook, load_workbook, cell
 import os.path
@@ -6,12 +7,20 @@ import datetime
 
 wsgiapp = Flask(__name__, template_folder='templates', static_folder='static')
 
-with open('Reconomy\\Names.txt', 'r', encoding='utf-8') as file:
-    NameList = file.read().split('\n')
+wsgiapp.config['MYSQL_HOST'] = 'localhost'
+wsgiapp.config['MYSQL_USER'] = 'root'
+wsgiapp.config['MYSQL_PASSWORD'] = ''
+wsgiapp.config['MYSQL_DB'] = 'flaskapp'
+
+mysql = MySQL(wsgiapp)
 
 @wsgiapp.route('/')
 def index():
     try:
+        cur = mysql.connection.cursor()
+        cur.execute('SELECT name FROM users')
+        fetchdata = cur.fetchall()
+        cur.close()
         username = request.args.get('todo')
         buttonStatus = request.args.get('button_status')
         textArea = request.args.get('messagecontent')
@@ -27,7 +36,9 @@ def index():
                     print('Error')
     except Exception as error:
         return repr(error)
-    return render_template('index.html', user = NameList)
+    # NameList = readUser()
+    return render_template('index.html', user = fetchdata)
+
 # edit xlsx-file and checks out a user
 def xlsxCheckout(user, time, comments):
     date = str(datetime.date.today())
@@ -47,6 +58,7 @@ def xlsxCheckout(user, time, comments):
             print(Error)
     else:
         print('Incorrect action')
+
 # creates a xlsx-file and checks in a user
 def xlsxCheckin(user, time, comments):
     date = str(datetime.date.today())
@@ -63,6 +75,7 @@ def xlsxCheckin(user, time, comments):
         Ws.append(['Name','Time checked in', 'Time checked out', 'Comment'])
         Ws.append([user, time, None, comments])
         Wb.save(fileName)
+
 # requires to be called by check in/out function, Will search for a user and return index value of row
 def xlsxSearch(user):
     date = str(datetime.date.today())
@@ -83,7 +96,8 @@ def xlsxSearch(user):
     else:
         print('File do not exist')
         return False
+
 # used to run in debug mode
 if __name__ == '__main__':
-    serve(wsgiapp, host='127.0.0.1', port=8080, url_scheme='https')
-    # app.run(debug=True)
+    serve(wsgiapp, host='127.0.0.1', port=80, url_scheme='https')
+    # wsgiapp.run(debug=True)
