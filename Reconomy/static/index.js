@@ -1,6 +1,6 @@
 let checkedInNames = new Set();
 let currentCheckedInName = null;
-function toggleCheckInOut() {
+function toggleCheckaInUt() {
 const nameList = document.getElementById('nameList');
 const selectedName = nameList.options[nameList.selectedIndex].text;
 const checkButton = document.getElementById('checkButton');
@@ -9,25 +9,25 @@ const currentTime = new Date();
 const message = messageBox.value.trim();
 
 
-if (selectedName !== "Select a name") {
+if (selectedName !== "Välj namn") {
     if (checkedInNames.has(selectedName)) {
     // Check out
-    status.textContent = `${selectedName} checked out at ${currentTime.toLocaleTimeString()}`;
-    checkButton.textContent = "Check In";
-    checkButton.className = "check-in";
+    status.textContent = `${selectedName} checkade ut kl: ${currentTime.toLocaleTimeString()}`;
+    checkButton.textContent = "Checka In";
+    checkButton.className = "checka-in";
     checkedInNames.delete(selectedName);
     if (currentCheckedInName === selectedName) {
         currentCheckedInName = null;
     }
     } else {
     // Check in
-    status.textContent = `${selectedName} checked in at ${currentTime.toLocaleTimeString()}`;
-    checkButton.textContent = "Check Out";
-    checkButton.className = "check-out";
+    status.textContent = `${selectedName} checkade in kl: ${currentTime.toLocaleTimeString()}`;
+    checkButton.textContent = "Checka ut";
+    checkButton.className = "checka-ut";
     checkedInNames.add(selectedName);
     currentCheckedInName = selectedName;
     }
-    updateCheckInList();
+
 } else {
     alert('Please select a name');
 }
@@ -40,24 +40,16 @@ const checkButton = document.getElementById('checkButton');
 
 if (selectedName !== "Select a name") {
     if (checkedInNames.has(selectedName)) {
-    checkButton.textContent = "Check Out";
-    checkButton.className = "check-out";
+    checkButton.textContent = "Checka Ut";
+    checkButton.className = "checka-Ut";
     } else {
-    checkButton.textContent = "Check In";
-    checkButton.className = "check-in";
+    checkButton.textContent = "Checka In";
+    checkButton.className = "checka-in";
     }
 }
 }
 
-function updateCheckInList() {
-const checkInList = document.getElementById('checkInList');
-checkInList.innerHTML = '';
-checkedInNames.forEach(name => {
-    const listItem = document.createElement('li');
-    listItem.textContent = name;
-    checkInList.appendChild(listItem);
-});
-}
+
 $(document).ready(function(){
     $('#checkButton').click(function(){
         $.ajax({
@@ -88,8 +80,9 @@ function getWeekNumber(date) {
     const weekNumberElement = document.getElementById('weekNumber');
     const currentDate = new Date();
     const weekNumber = getWeekNumber(currentDate);
-    weekNumberElement.textContent = `Week ${weekNumber}`;
-  });
+    const weekday = currentDate.toLocaleDateString('sv-SE', { weekday: 'long' }); // Veckodag på svenska
+    weekNumberElement.textContent = `Vecka ${weekNumber} - ${weekday.charAt(0).toUpperCase() + weekday.slice(1)}`; // Första bokstaven versal
+});
 
 
 
@@ -101,7 +94,7 @@ function updateDateTime() {
   const now = new Date();
   const dateString = now.toLocaleDateString();
   const timeString = now.toLocaleTimeString();
-  dateTimeElement.textContent = `Date: ${dateString} Time: ${timeString}`;
+  dateTimeElement.textContent = `Datum: ${dateString} Tid: ${timeString}`;
 }
 
 

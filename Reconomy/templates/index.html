@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,29 +27,20 @@
     <div class="form-container">
       <img src="../static/reconomy-logo.png" alt="" width="500" class="logo" >
       <br>
-      <h3>Check In and Out</h3>
+      <h3>Incheckning och Utcheckning</h3>
       <div class="placeholder" id="placeholder">
           <select id="nameList" name="option" onchange="updateButtonText()">
-            <option value='' disabled selected>Select a name</option>
+            <option value='' disabled selected>Välj namn</option>1
             {% for i in user %}
             <option value={{i}}>{{i}}</option>
             {%endfor%}
           </select>
-          <textarea id="messageBox" placeholder="Enter a message"></textarea>
-          <button id="checkButton" class="check-in" onclick="toggleCheckInOut()">Check In</button>
+          <textarea id="messageBox" placeholder="Skriv ditt meddelande "></textarea>
+          <button id="checkButton" class="check-in" onclick="toggleCheckaInUt()">Checka in</button>
           <div id="status"></div>
       </div>
     </div>
-    <div class="checked-in-list">
-      <h2>Checked In Today</h2>
-      <br>
-      <ul id="checkInList"></ul>
-    </div>
-  </div>
-
-
-
-
+    
   
   <footer>
     <div id="dateTime" class="large-text"></div>
