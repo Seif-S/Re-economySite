@@ -49,10 +49,12 @@ def xlsxCheckout(user, time, comments):
             Ws = Wb.active
             index = xlsxSearch(user)
             if index != False:
-                index = 'C' + str(index)
-                Ws[index].value = time
-            else:
-                Ws.append([user, time, None, comments])
+                CheckinIndex = 'C' + str(index)
+                checktime = 'B' + str(index)
+                totalTimeIndex = 'E' + str(index)
+                checkedtime = Ws[checktime].value
+                Ws[CheckinIndex].value = time
+                Ws[totalTimeIndex].value = time - checkedtime
             Wb.save(fileName)
         except Exception as Error:
             print(Error)
@@ -72,8 +74,8 @@ def xlsxCheckin(user, time, comments):
         Wb = Workbook()
         Ws = Wb.active
         Ws.title = 'Data'
-        Ws.append(['Name','Time checked in', 'Time checked out', 'Comment'])
-        Ws.append([user, time, None, comments])
+        Ws.append(['Name','Time checked in', 'Time checked out', 'Comment', 'Total Time Work'])
+        Ws.append([user, time, None, comments, None])
         Wb.save(fileName)
 
 # requires to be called by check in/out function, Will search for a user and return index value of row
