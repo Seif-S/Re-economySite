@@ -57,7 +57,7 @@ $(document).ready(function(){
         type:'get',
         contentType:'application/json',
         data:{
-        todo:$('#nameList :selected').text(),
+        todo:$('#nameList :selected').val(),
         button_status:$('button').attr('class'),
         messagecontent:$('textarea').val()
         },

@@ -3,15 +3,12 @@
     top: 270px;
     right: 20px;
     margin-right: 50px;
-   
     background-color: #f8f9fa;
     padding: 10px;
     box-shadow: 0 4px 8px rgba(70, 244, 43, 0.544); 
     box-sizing: border-box;
     width: 350px;
     height: 350px;
-    
-
   }
 
 h2 {
@@ -30,9 +27,6 @@ h2 {
     font-family: Arial, sans-serif;
   }
   
-
-
-
 .logo {
     position: absolute;
     top: 8px;
@@ -47,8 +41,7 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;   
-    
+    height: 100vh;    
 }
 
 h3 {
@@ -132,11 +125,4 @@ footer {
 .large-text {
     font-size: 24px;
     font-weight: bold;
-}
-
-
-.information  
-{
-
-
 }
