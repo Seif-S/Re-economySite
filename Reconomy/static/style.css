@@ -1,14 +1,14 @@
 .week-comment-box {
     position: absolute;
     top: 270px;
-    left: 150px;
+    right: 20px;
+    margin-right: 50px;
     background-color: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px #16d129bb;
-    width: 300px;
-    height: 310px;
-
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(70, 244, 43, 0.544); 
+    box-sizing: border-box;
+    width: 350px;
+    height: 350px;
   }
 
 h2 {
@@ -41,8 +41,7 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh; 
-    
+    height: 100vh;    
 }
 
 h3 {
@@ -54,7 +53,7 @@ h3 {
     background-color: #f8f9fa; 
     padding: 20px; 
     border-radius: 10px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 8px rgba(70, 244, 43, 0.544); 
     width: 350px; 
     margin: 20px auto; 
     height: 350px;
@@ -67,20 +66,6 @@ h3 {
 }
 
 
-/* Styling för knappen */
-
-
-#checkButton.check-out {
-    background-color: #dc3545; /* Röd bakgrund för utcheckning */
-}
-
-#checkButton:hover {
-    background-color: #218838; /* Mörkare grön vid hover */
-}
-
-#checkButton.check-out:hover {
-    background-color: #c82333;
-}
 textarea#messageBox {
     width: 90%;
     padding: 10px;
@@ -115,33 +100,17 @@ select {
     ;
 }
 
-.check-in {
+.checka-in {
     background-color: rgb(10, 132, 8);
     color: white;
     
   }
-  .check-out {
+  .checka-ut {
     background-color: rgb(233, 32, 10);
     color: white;
   }
 
  
-  .checked-in-list {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: #f8f9fa;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    box-sizing: border-box;
-    width: 250px;
-    min-height: 80px;
-     
-  }
-  #checkInList li{
-    list-style-type: none;
-  }
-  
 footer {
     position: fixed;
     bottom: 0;
@@ -157,14 +126,3 @@ footer {
     font-size: 24px;
     font-weight: bold;
 }
-/* Media query for desktop screens */
-
-    
-
-
-
-
-
-
-    
-
