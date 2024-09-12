@@ -20,6 +20,9 @@ def index():
         cur = mysql.connection.cursor()
         cur.execute('SELECT name FROM users')
         fetchdata = cur.fetchall()
+        date = datetime.datetime.today().isoweekday()
+        cur.execute(f'SELECT `Message` FROM `message` WHERE id={date}')
+        fetchMessages = cur.fetchall()
         cur.close()
         username = request.args.get('todo')
         buttonStatus = request.args.get('button_status')
@@ -37,7 +40,7 @@ def index():
     except Exception as error:
         return repr(error)
     # NameList = readUser()
-    return render_template('index.html', user = fetchdata)
+    return render_template('index.html', user = fetchdata, Message = fetchMessages)
 
 # edit xlsx-file and checks out a user
 def xlsxCheckout(user, time, comments):
