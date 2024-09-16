@@ -15,6 +15,13 @@
     <div class="week-comment-box">
       <h2 id="weekNumber"></h2>  <!-- Veckonumret kommer att visas här -->
       <h4>Viktig information</h4>
+      <p class="textContent">
+        {% for index in Message %}
+          {% for i in index %}
+            {{i}}
+          {% endfor %}
+        {% endfor %}
+      </p>
     </div>
     
   <div class="container">
@@ -29,7 +36,7 @@
               {% for i in index%}
             <option value={{i}}>{{i}}</option>
               {% endfor %}
-            {%endfor%}
+            {% endfor %}
           </select>
           <textarea id="messageBox" placeholder="Skriv ditt meddelande "></textarea>
           <button id="checkButton" class="check-in" onclick="toggleCheckaInUt()">Checka in</button>

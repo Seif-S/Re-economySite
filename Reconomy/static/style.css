@@ -12,6 +12,11 @@
     border-radius: 5px;
   }
 
+.textContent
+{
+    padding-left: 25px;
+}
+
 h2 {
     position: absolute;
     top:-10px
