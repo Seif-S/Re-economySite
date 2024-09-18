@@ -31,8 +31,8 @@ def index():
         # strips spaces from username and check if it true
         if username and username.strip():
                 # check status of button and call either checkout or checkin
-                if buttonStatus == 'check-in':
-                    xlsxCheckout(username, currentTime, textArea)
+                if buttonStatus == 'check-In':
+                    xlsxCheckout(username, currentTime)
                 elif buttonStatus == 'check-out':
                     xlsxCheckin(username, currentTime, textArea)
                 else:
@@ -43,7 +43,7 @@ def index():
     return render_template('index.html', user = fetchdata, Message = fetchMessages)
 
 # edit xlsx-file and checks out a user
-def xlsxCheckout(user, time, comments):
+def xlsxCheckout(user, time):
     date = str(datetime.date.today())
     fileName = 'timeReport'+ date +'.xlsx'
     if os.path.isfile(fileName):

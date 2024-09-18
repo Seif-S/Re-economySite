@@ -14,7 +14,7 @@ if (selectedName !== "Välj namn") {
     // Check out
     status.textContent = `${selectedName} checkade ut kl: ${currentTime.toLocaleTimeString()}`;
     checkButton.textContent = "Checka In";
-    checkButton.className = "checka-in";
+    checkButton.className = "check-In";
     checkedInNames.delete(selectedName);
     if (currentCheckedInName === selectedName) {
         currentCheckedInName = null;
@@ -23,7 +23,7 @@ if (selectedName !== "Välj namn") {
     // Check in
     status.textContent = `${selectedName} checkade in kl: ${currentTime.toLocaleTimeString()}`;
     checkButton.textContent = "Checka ut";
-    checkButton.className = "checka-ut";
+    checkButton.className = "check-out";
     checkedInNames.add(selectedName);
     currentCheckedInName = selectedName;
     }
@@ -38,13 +38,13 @@ const nameList = document.getElementById('nameList');
 const selectedName = nameList.options[nameList.selectedIndex].text;
 const checkButton = document.getElementById('checkButton');
 
-if (selectedName !== "Select a name") {
+if (selectedName != "Select a name") {
     if (checkedInNames.has(selectedName)) {
     checkButton.textContent = "Checka Ut";
-    checkButton.className = "checka-Ut";
+    checkButton.className = "check-out";
     } else {
     checkButton.textContent = "Checka In";
-    checkButton.className = "checka-in";
+    checkButton.className = "check-In";
     }
 }
 }
